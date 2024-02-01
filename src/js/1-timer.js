@@ -5,7 +5,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import iconClose from '../img/bi_x-octagon.png';
 
 const refs = {
-  inputEl: document.querySelector('.input-field'),
+  inputEl: document.querySelector('#datetime-picker'),
   btnStart: document.querySelector('.start-btn'),
   btnStop: document.querySelector('.stop-btn'),
   dataDay: document.querySelector('span[data-days]'),
@@ -17,6 +17,7 @@ let userSelectedDate;
 let difference;
 let timerInterval;
 refs.btnStart.disabled = true;
+refs.btnStop.disabled = true;
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -79,12 +80,14 @@ function onStart() {
   }, 1000);
   refs.btnStart.disabled = true;
   refs.inputEl.disabled = true;
+  refs.btnStop.disabled = false;
 }
 function onStop() {
   refs.inputEl.disabled = false;
   clearInterval(timerInterval);
   difference = 0;
   onTimer(difference);
+  refs.btnStop.disabled = true;
 }
 flatpickr('#datetime-picker', options);
 refs.btnStart.addEventListener('click', onStart);

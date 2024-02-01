@@ -25,7 +25,7 @@ function makePromise() {
   const formEl = refs.form.elements;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (form.state.value === 'fulfilled') {
+      if (formEl.state.value === 'fulfilled') {
         resolve(formEl.delay.value);
       } else {
         reject(formEl.delay.value);
@@ -36,7 +36,6 @@ function makePromise() {
 }
 function onMessage(e) {
   e.preventDefault();
-
   makePromise();
 }
 

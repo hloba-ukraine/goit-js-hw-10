@@ -70,6 +70,7 @@ function onStart() {
   timerInterval = setInterval(() => {
     if (difference <= 0) {
       clearInterval(timerInterval);
+      difference = 0;
     } else {
       onTimer(difference);
       difference -= 1000;
@@ -77,6 +78,7 @@ function onStart() {
   }, 1000);
   refs.btnStart.disabled = true;
   refs.inputEl.disabled = true;
+  console.log(timerInterval);
 }
 
 flatpickr('#datetime-picker', options);

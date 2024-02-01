@@ -26,8 +26,9 @@ function makePromise() {
     setTimeout(() => {
       if (form.state.value === 'fulfilled') {
         resolve(form.delay.value);
+      } else {
+        reject(form.delay.value);
       }
-      reject(form.delay.value);
     }, Number(form.delay.value));
   });
   return promise.then(resolveAnswer).catch(rejectAnswer);

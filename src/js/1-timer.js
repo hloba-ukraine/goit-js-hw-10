@@ -56,15 +56,15 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
-function padNumber(value) {
+function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 function onTimer(difference) {
   const timer = convertMs(difference);
-  refs.dataDay.textContent = `${padNumber(timer.days)}`;
-  refs.dataHours.textContent = `${padNumber(timer.hours)}`;
-  refs.dataMinutes.textContent = `${padNumber(timer.minutes)}`;
-  refs.dataSeconds.textContent = `${padNumber(timer.seconds)}`;
+  refs.dataDay.textContent = `${addLeadingZero(timer.days)}`;
+  refs.dataHours.textContent = `${addLeadingZero(timer.hours)}`;
+  refs.dataMinutes.textContent = `${addLeadingZero(timer.minutes)}`;
+  refs.dataSeconds.textContent = `${addLeadingZero(timer.seconds)}`;
 }
 function onStart() {
   timerInterval = setInterval(() => {
@@ -75,6 +75,9 @@ function onStart() {
       difference -= 1000;
     }
   }, 1000);
+  refs.btnStart.disabled = true;
+  refs.inputEl.disabled = true;
 }
+
 flatpickr('#datetime-picker', options);
 refs.btnStart.addEventListener('click', onStart);

@@ -23,14 +23,18 @@ function rejectAnswer(delay) {
 }
 function makePromise() {
   const formEl = refs.form.elements;
+  const formData = {
+    delay: formEl.delay.value,
+    state: formEl.state.value,
+  };
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (formEl.state.value === 'fulfilled') {
-        resolve(formEl.delay.value);
+      if (formData.state === 'fulfilled') {
+        resolve(formData.delay);
       } else {
-        reject(formEl.delay.value);
+        reject(formData.delay);
       }
-    }, Number(formEl.delay.value));
+    }, Number(formData.delay));
   });
   return promise.then(resolveAnswer).catch(rejectAnswer);
 }

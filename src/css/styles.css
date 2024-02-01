@@ -73,7 +73,18 @@
   line-height: 1.5em;
   transition: background 250ms linear;
 }
-
+.stop-btn {
+  width: 75px;
+  border: none;
+  border-radius: 8px;
+  background: #e50909;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5em;
+  transition: background 250ms linear;
+}
 .start-btn:hover {
   background: #6c8cff;
 }
@@ -81,7 +92,9 @@
 .start-btn:disabled {
   background: #cfcfcf;
 }
-
+.stop-btn:disabled {
+  background: #cfcfcf;
+}
 .timer {
   display: flex;
   gap: 24px;

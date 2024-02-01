@@ -5,10 +5,6 @@ const refs = {
   form: document.querySelector('.form'),
 };
 
-function getFormData(e) {
-  const form = document.getElementById('form');
-  e.preventDefault();
-}
 function resolveAnswer() {
   iziToast.show({
     message: `✅ Fulfilled promise in ${form.delay.value}ms`,
@@ -37,7 +33,8 @@ function makePromise() {
   return promise.then(resolveAnswer).catch(rejectAnswer);
 }
 function onMessage(e) {
-  getFormData(e);
+  const form = document.getElementById('form');
+  e.preventDefault();
   makePromise();
 }
 

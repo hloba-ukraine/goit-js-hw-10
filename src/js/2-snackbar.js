@@ -4,7 +4,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 const refs = {
   form: document.querySelector('.form'),
 };
-
+const form = document.getElementById('form');
 function resolveAnswer() {
   iziToast.show({
     message: `✅ Fulfilled promise in ${form.delay.value}ms`,
@@ -33,7 +33,6 @@ function makePromise() {
   return promise.then(resolveAnswer).catch(rejectAnswer);
 }
 function onMessage(e) {
-  const form = document.getElementById('form');
   e.preventDefault();
   makePromise();
 }

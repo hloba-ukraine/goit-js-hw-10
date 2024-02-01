@@ -34,7 +34,7 @@ function makePromise() {
       reject(form.delay.value);
     }, Number(form.delay.value));
   });
-  promise.then(resolveAnswer).catch(rejectAnswer);
+  return promise.then(resolveAnswer).catch(rejectAnswer);
 }
 function onMessage(e) {
   getFormData(e);

@@ -7,6 +7,7 @@ import iconClose from '../img/bi_x-octagon.png';
 const refs = {
   inputEl: document.querySelector('.input-field'),
   btnStart: document.querySelector('.start-btn'),
+  btnStop: document.querySelector('.stop-btn'),
   dataDay: document.querySelector('span[data-days]'),
   dataHours: document.querySelector('span[data-hours]'),
   dataMinutes: document.querySelector('span[data-minutes]'),
@@ -78,8 +79,13 @@ function onStart() {
   }, 1000);
   refs.btnStart.disabled = true;
   refs.inputEl.disabled = true;
-  console.log(timerInterval);
 }
-
+function onStop() {
+  refs.inputEl.disabled = false;
+  clearInterval(timerInterval);
+  difference = 0;
+  onTimer(difference);
+}
 flatpickr('#datetime-picker', options);
 refs.btnStart.addEventListener('click', onStart);
+refs.btnStop.addEventListener('click', onStop);

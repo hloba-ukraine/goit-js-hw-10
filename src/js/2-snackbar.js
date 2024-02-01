@@ -4,37 +4,39 @@ import 'izitoast/dist/css/iziToast.min.css';
 const refs = {
   form: document.querySelector('.form'),
 };
-const form = document.getElementById('form');
-function resolveAnswer() {
+
+function resolveAnswer(delay) {
   iziToast.show({
-    message: `✅ Fulfilled promise in ${form.delay.value}ms`,
+    message: `✅ Fulfilled promise in ${delay}ms`,
     messageColor: '#FFFFFF',
     backgroundColor: '#59A10D',
     position: 'topRight',
   });
 }
-function rejectAnswer() {
+function rejectAnswer(delay) {
   iziToast.show({
-    message: `❌ Rejected promise in ${form.delay.value}ms`,
+    message: `❌ Rejected promise in ${delay}ms`,
     messageColor: '#FFF',
     backgroundColor: '#FF0000',
     position: 'topRight',
   });
 }
 function makePromise() {
+  const formEl = refs.form.elements;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (form.state.value === 'fulfilled') {
-        resolve(form.delay.value);
+        resolve(formEl.delay.value);
       } else {
-        reject(form.delay.value);
+        reject(formEl.delay.value);
       }
-    }, Number(form.delay.value));
+    }, Number(formEl.delay.value));
   });
   return promise.then(resolveAnswer).catch(rejectAnswer);
 }
 function onMessage(e) {
   e.preventDefault();
+
   makePromise();
 }
 
